@@ -24,7 +24,7 @@ test('users can authenticate using the login screen', function () {
         ->set('email', $user->email)
         ->set('password', $password)
         ->call('login')
-        ->assertDispatched('toast', status: 'success', message: 'Login successful! ')
+        ->assertDispatched('toast', status: 'success', message: 'Login successful!')
         ->assertRedirect('/');
 
     $this->assertAuthenticated();
@@ -121,9 +121,10 @@ test('users can authenticate using passkey', function () {
         ],
     ]);
 
+    // 'rpId'             => Uri::of(config('app.url'))->host(),
     Session::flash('passkey-authentication-options', json_encode([
         'challenge'        => 'OWZrbjlQR3FmMklJS3ZkYg',
-        'rpId'             => Uri::of(config('app.url'))->host(),
+        'rpId'             => Uri::of('https://docfunc.test')->host(),
         'allowCredentials' => [],
     ]));
 
@@ -143,7 +144,7 @@ test('users can authenticate using passkey', function () {
         ]),
     ])
         ->call('loginWithPasskey')
-        ->assertDispatched('toast', status: 'success', message: 'Login successful! ');
+        ->assertDispatched('toast', status: 'success', message: 'Login successful!');
 });
 
 

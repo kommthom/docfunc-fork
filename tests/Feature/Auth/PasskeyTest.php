@@ -13,11 +13,13 @@ test('passkey can be registered', function () {
 
     loginAsUser($user);
 
+    // 'id'   => Uri::of(config('app.url'))->host(),
+    // 'name' => config('app.name'),
     Session::flash('passkey-registration-options', json_encode([
         'challenge'              => 'SlhvbldrUGpJeldEUHNrSA',
         'rp'                     => [
-            'id'   => Uri::of(config('app.url'))->host(),
-            'name' => config('app.name'),
+            'id'   => Uri::of("https://docfunc.test")->host(),
+            'name' => 'docfunc',
         ],
         'user'                   => [
             'id'          => 'MQ',

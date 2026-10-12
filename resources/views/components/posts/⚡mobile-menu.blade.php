@@ -17,7 +17,7 @@ new class extends Component
 
         $post->withoutTimestamps(fn () => $post->delete());
 
-        $this->dispatch('toast', status: 'success', message: __('Successfully deleted the article!'));
+        $this->dispatch('toast', status: 'success', message: __('Successfully deleted post!'));
 
         $this->redirect(
             route('users.show', [

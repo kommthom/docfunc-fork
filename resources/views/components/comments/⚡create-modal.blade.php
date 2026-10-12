@@ -117,7 +117,7 @@ new class extends Component
             window.tabToFourSpaces?.(event);
         },
         replyToLabel() {
-            return `Reply ${this.modal.replyTo}'s comment`;
+            return `Reply to ${this.modal.replyTo}'s comment`;
         },
         submit() {
             this.$wire.save().then(() => {

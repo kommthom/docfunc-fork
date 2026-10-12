@@ -69,7 +69,7 @@ test('after the user clicks the load more button, they can see more replies', fu
     $page = $this->visit($post->link_with_slug);
 
     $page
-        ->click($comment->children()->count().' Reply')
+        ->click($comment->children()->count().' Replies')
         ->waitForText($bodyOne)
         ->assertSee($bodyTwo)
         ->assertSee($bodyThree);
@@ -197,7 +197,7 @@ test('replying to a root comment shows reply-to label and renders under that par
 
     // Open reply modal via the parent's Reply button
     $page->click('Reply')
-        ->assertSee('reply to Xiao Ming\'s comment')
+        ->assertSee('Reply to Xiao Ming\'s comment')
         ->fill('create-comment-body', 'Hi Xiao Ming, I\'m here to reply to you')
         ->click('#create-comment-submit-button')
         ->assertSee('Hi Xiao Ming, I\'m here to reply to you');
@@ -217,7 +217,7 @@ test('editing own comment updates content and shows edited flag', function () {
 
     $page->click('[data-test-id="comments.card.edit"]')
         ->fill('#edit-comment-body', 'Updated content')
-        ->click('Updated')
+        ->click('Update')
         ->assertSee('Updated content')
         ->assertSee('(Edited)');
 });

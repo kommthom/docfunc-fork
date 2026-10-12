@@ -162,7 +162,7 @@ describe('destroy post', function () {
             'year'   => $post->created_at->format('Y'),
         ])
             ->call('restore', $post->id)
-            ->assertDispatched('toast', status: 'success', message: 'Article has been restored');
+            ->assertDispatched('toast', status: 'success', message: 'Article restored');
 
         $this->assertNotSoftDeleted('posts', ['id' => $post->id]);
     });

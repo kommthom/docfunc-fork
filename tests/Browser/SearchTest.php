@@ -33,7 +33,7 @@ test('user can see no result message if there are no results for the search quer
 
     $page->click('#search-button')
         ->type('#search-box', 'nonexistentkeyword')
-        ->assertSeeIn('#search-result', 'Sorry...no related articles found.')
+        ->assertSeeIn('#search-result', 'Sorry...no related articles found. "')
         ->assertSeeIn('#search-result', 'nonexistentkeyword')
         ->assertSeeIn('#search-result', '" Related Articles');
 });

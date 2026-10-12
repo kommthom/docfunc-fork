@@ -232,7 +232,7 @@ describe('home page', function () {
 
         get($post->link_with_slug)
             ->assertStatus(200)
-            ->assertSee('https://blobs.t-benninghaus.com/share.webp');
+            ->assertSee('https://blob.t-benninghaus.de/share.webp');
     });
 
     test('not showing the cover image on top of the post', function () {

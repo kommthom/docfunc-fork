@@ -30,7 +30,7 @@ new class extends Component
         $this->refreshPostsByYear();
 
         $this->dispatch('toast', status: 'success',
-            message: $post->is_private ? __('Article status has been switched to private') : __('Article status has been switched to public'));
+            message: $post->is_private ? __('Article status has been switched to private') : __('Article restored'));
     }
 
     public function restore(int $postId): void

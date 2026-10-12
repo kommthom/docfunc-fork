@@ -59,7 +59,7 @@ new class extends Component
                         name="email"
                         type="text"
                         :id="'email'"
-                        :placeholder="'__('Email')'"
+                        placeholder="{{__('Email')}}"
                         required
                         autofocus
                         wire:model="email"

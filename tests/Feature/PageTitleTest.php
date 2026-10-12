@@ -20,7 +20,7 @@ describe('page titles', function () {
     test('posts index page has the correct title', function () {
         get(route('posts.index'))
             ->assertOk()
-            ->assertSee('<title>All Articles</title>', false);
+            ->assertSee('<title>All articles</title>', false);
     });
 
     test('login page has the correct title', function () {
@@ -41,7 +41,7 @@ describe('page titles', function () {
     test('forgot password page has the correct title', function () {
         get(route('password.request'))
             ->assertOk()
-            ->assertSee('<title>Forget Password</title>', false);
+            ->assertSee('<title>Forgot password</title>', false);
     });
 
     test('reset password page has the correct title', function () {
@@ -58,7 +58,7 @@ describe('page titles', function () {
         $this->actingAs($user)
             ->get(route('verification.notice'))
             ->assertOk()
-            ->assertSee('<title>Verify Email Address</title>', false);
+            ->assertSee('<title>Verify Email</title>', false);
     });
 
     test('posts create page has the correct title', function () {
@@ -66,7 +66,7 @@ describe('page titles', function () {
 
         get(route('posts.create'))
             ->assertOk()
-            ->assertSee('<title>Create Article</title>', false);
+            ->assertSee('<title>Add Article</title>', false);
     });
 
     test('posts edit page has the correct title', function () {
@@ -166,6 +166,6 @@ describe('page titles', function () {
 
         get(route('comments.show', $comment->id))
             ->assertOk()
-            ->assertSee('<title>Visitor comments</title>', false);
+            ->assertSee('<title>'.e('Visitor'.'\'s comment').'</title>', false);
     });
 });
