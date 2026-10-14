@@ -1,7 +1,7 @@
 @props(['title'])
 
 @php
-  $defaultPreviewUrl = 'https://blob.t-benninghaus.dev/share.jpg';
+  $defaultPreviewUrl = 'https://blob.t-benninghaus.de/share.jpg';
 @endphp
 
 {{-- Open Graph / Facebook --}}

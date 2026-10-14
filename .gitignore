@@ -14,7 +14,8 @@
 .DS_Store
 .env
 .env.backup
-.env.production
+.env.test
+.env.prod
 .phpactor.json
 .phpunit.result.cache
 deploy.php

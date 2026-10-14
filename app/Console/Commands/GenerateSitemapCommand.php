@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Models\Post;
@@ -8,7 +10,7 @@ use Illuminate\Console\Command;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 
-class GenerateSitemap extends Command
+class GenerateSitemapCommand extends Command
 {
     protected $signature = 'sitemap:generate';
 

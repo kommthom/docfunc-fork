@@ -147,7 +147,7 @@ describe('page titles', function () {
 
         get(route('users.show', ['id' => $user->id]))
             ->assertOk()
-            ->assertSee('<title>'.e($user->name.' Personal Information').'</title>', false);
+            ->assertSee('<title>'.e($user->name.'\'s Personal Information').'</title>', false);
     });
 
     test('comments show page has the correct title for a comment with a user', function () {
