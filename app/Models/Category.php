@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * @property string $link_with_name 帶有 name slug 的分類連結，set by linkWithName()
+ * @property string $link_with_name Kategorielink mit Name-Slug, gesetzt durch linkWithName()
  */
 class Category extends Model
 {
@@ -24,13 +24,6 @@ class Category extends Model
         'name', 'icon', 'description', 'is_default',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'is_default' => 'boolean',
-        ];
-    }
-
     /**
      * @return HasMany<Post, $this>
      */
@@ -40,11 +33,11 @@ class Category extends Model
     }
 
     /**
-     * 將連結加上分類名稱
+     * Adds category name to link
      *
      * @return Attribute<string, never>
      */
-    protected function linkWithName(): Attribute
+    public function linkWithName(): Attribute
     {
         return new Attribute(
             get: fn ($value) => route('categories.show', [

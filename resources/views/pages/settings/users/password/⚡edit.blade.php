@@ -37,9 +37,9 @@ new class extends Component
     protected function messages(): array
     {
         return [
-            'current_password.required' => '請輸入現在的密碼',
-            'new_password.required'     => '請輸入新密碼',
-            'new_password.confirmed'    => '新密碼與確認新密碼不符合',
+            'current_password.required' => __('Please enter current password'),
+            'new_password.required' => __('Please enter new password'),
+            'new_password.confirmed' => __('New password and confirm new password do not match'),
         ];
     }
 
@@ -51,7 +51,7 @@ new class extends Component
 
         $user->update(['password' => $this->new_password]);
 
-        $this->dispatch('toast', status: 'success', message: '密碼更新成功！');
+        $this->dispatch('toast', status: 'success', message: __('Password updated successfully!'));
 
         $this->reset(['current_password', 'new_password', 'new_password_confirmation']);
     }
@@ -65,46 +65,46 @@ new class extends Component
 
             <x-card class="flex w-full flex-col justify-center gap-6 md:max-w-2xl">
                 <div class="space-y-4">
-                    <h1 class="w-full text-center text-2xl dark:text-zinc-50">修改密碼</h1>
+                    <h1 class="w-full text-center text-2xl dark:text-zinc-50">{{ __('Change Password') }}</h1>
                     <hr class="h-0.5 border-0 bg-zinc-300 dark:bg-zinc-700" />
                 </div>
 
-                {{-- 驗證錯誤訊息 --}}
+                {{-- validate error message --}}
                 <x-auth-validation-errors :errors="$errors" />
 
                 <form class="w-full space-y-6" wire:submit="update({{ $user->id }})">
-                    {{-- 舊密碼 --}}
+                    {{-- Old Password --}}
                     <x-floating-label-input
                         id="current_password"
                         type="password"
-                        placeholder="舊密碼"
+                        placeholder="{{ __('Old Password') }}"
                         wire:model="current_password"
                         required
                     />
 
-                    {{-- 新密碼 --}}
+                    {{-- new password --}}
                     <x-floating-label-input
                         id="new_password"
                         type="password"
-                        placeholder="新密碼"
+                        placeholder="{{ __('New Password') }}"
                         wire:model="new_password"
                         required
                     />
 
-                    {{-- 確認新密碼 --}}
+                    {{-- Confirm New Password --}}
                     <x-floating-label-input
                         id="new_password_confirmation"
                         type="password"
-                        placeholder="確認新密碼"
+                        placeholder="{{ __('Confirm New Password') }}"
                         wire:model="new_password_confirmation"
                         required
                     />
 
                     <div class="flex items-center justify-end">
-                        {{-- 儲存按鈕 --}}
+                        {{-- save button --}}
                         <x-button>
                             <x-icons.save class="w-5" />
-                            <span class="ml-2">修改密碼</span>
+                            <span class="ml-2">{{ __('Change Password') }}</span>
                         </x-button>
                     </div>
                 </form>

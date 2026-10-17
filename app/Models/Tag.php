@@ -17,7 +17,7 @@ class Tag extends Model
     protected $fillable = ['name'];
 
     /**
-     * 定義與文章的關聯
+     * Defining the connection to the article
      *
      * @return BelongsToMany<Post, $this>
      */

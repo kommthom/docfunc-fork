@@ -34,7 +34,7 @@ test('it returns 400 and logs error when serialization fails in returning regist
 
     $serializerException = new class extends Exception implements SerializerExceptionInterface {};
 
-    // 模擬 Serializer 拋出例外
+    // Simulate Serializer throwing an exception
     $serializerMock = Mockery::mock(Serializer::class);
     $serializerMock->shouldReceive('toJson')
         ->andThrow(new $serializerException('Serialization failed'));
@@ -43,7 +43,7 @@ test('it returns 400 and logs error when serialization fails in returning regist
 
     Log::shouldReceive('error')
         ->once()
-        ->with('Webauthn 註冊選項序列化失敗', Mockery::on(function ($context) use ($user) {
+        ->with('Webauthn registration option serialization failed.', Mockery::on(function ($context) use ($user) {
             return $context['user_id'] === $user->id && $context['exception'] === 'Serialization failed';
         }));
 
@@ -51,6 +51,6 @@ test('it returns 400 and logs error when serialization fails in returning regist
         ->getJson(route('passkeys.register-options'))
         ->assertStatus(400)
         ->assertJson([
-            'error' => '伺服器發生錯誤，無法序列化註冊選項。',
+            'error' => 'Server error occurred, unable to serialize registration options. ',
         ]);
 });

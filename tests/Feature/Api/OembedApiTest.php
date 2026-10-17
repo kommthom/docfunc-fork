@@ -31,8 +31,10 @@ test('twitter\'s oembed api can be called', function () {
 
 test('if the embedded twitter link is an invalid link, return the alternative html content', function () {
     Http::fake(['https://publish.twitter.com/oembed*' => Http::response('Not Found', 404)]);
+    
+    app()->setLocale('en');
 
     postJson('/api/oembed/twitter', ['url' => 'https://twitter.com/TwitterDev/status/123456789', 'theme' => 'dark'])
         ->assertStatus(400)
-        ->assertJson(['html' => '<p style="font-size:1.5em;">Twitter 連結發生錯誤... 🥲</p>']);
+        ->assertJson(['html' => '<p style="font-size:1.5em;">Twitter link encountered an error... ??</p>']);
 });

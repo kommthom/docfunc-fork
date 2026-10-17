@@ -244,7 +244,7 @@ return [
         'recaptcha_response_field' => '重新驗證響應字段',
         'referee'                  => '裁判',
         'referees'                 => '裁判員',
-        'region'                   => 'region',
+        'region'                   => '地區',
         'reject_reason'            => '拒絕理由',
         'remember'                 => '記住',
         'restored_at'              => '恢復於',

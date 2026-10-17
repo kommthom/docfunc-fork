@@ -45,7 +45,8 @@ new class extends Component
 
     public function render()
     {
-        Head::title($this->post->title)->description($this->post->excerpt);
+        Head::title($this->post->title)
+            ->description($this->post->excerpt);
 
         if (! empty($this->post->cover_image_url)) {
             Head::ogImage($this->post->cover_image_url);
@@ -141,22 +142,22 @@ new class extends Component
                                 <div>&bull;</div>
 
                                 {{-- post created time --}}
-                                <div class="flex items-center">
+                                <<div class="flex items-center">
                                     <x-icons.calendar-week-fill class="w-4" />
                                     <time
                                         class="ml-2"
                                         datetime="{{ $post->created_at->toDateString() }}"
                                     >{{ $post->created_at->toDateString() }}</time>
                                 </div>
-
+                                
                                 @if ($post->isRevised())
                                     <div class="hidden md:block">&bull;</div>
 
                                     {{-- post updated time --}}
-                                    <div class="hidden items-center md:flex" title="最後更新時間">
+                                    <div class="hidden items-center md:flex" title="{{ __('Last Updated') }}">
                                         <x-icons.wrench class="w-4" />
                                         <time class="ml-2" datetime="{{ $post->updated_at->toDateString() }}"
-                                            >更新於 {{ $post->updated_at->toDateString() }}</time>
+                                            >{{ __('Updated on') . $post->updated_at->toDateString() }}</time>
                                     </div>
                                 @endif
 
@@ -165,7 +166,7 @@ new class extends Component
                                 <div class="hidden items-center md:flex">
                                     <x-icons.book-half class="w-4" />
 
-                                    <span class="ml-2">{{ $this->readTime }} 分鐘</span>
+                                    <span class="ml-2">{{ $this->readTime . __('minutes') }}</span>
                                 </div>
 
                                 <div class="hidden md:block">&bull;</div>

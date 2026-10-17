@@ -16,8 +16,8 @@ function createExpandImageButton(modal: Modal, src: string, alt: string): HTMLBu
     const expandImageButton: HTMLButtonElement =
         document.createElement('button');
     expandImageButton.type = 'button';
-    expandImageButton.setAttribute('aria-label', '放大檢視圖片');
-    expandImageButton.title = '放大檢視';
+    expandImageButton.setAttribute('aria-label', 'Zoom in to view the image');
+    expandImageButton.title = 'Zoom in';
     expandImageButton.classList.add(
         'absolute',
         'top-2',

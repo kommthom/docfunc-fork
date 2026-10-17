@@ -13,11 +13,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->boolean('is_default')->default(false)->after('description')->comment('是否為預設分類');
+            $table->boolean('is_default')->default(false)->after('description')->comment('Ist es die Standardkategorie?');
         });
 
         DB::table('categories')
-            ->whereIn('name', ['日常分享', '程式技術', '電玩遊戲'])
+            ->whereIn('name', ['Tägliches Teilen', 'Programmiertechniken'])
             ->update(['is_default' => true]);
     }
 

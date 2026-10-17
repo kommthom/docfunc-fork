@@ -20,13 +20,13 @@ describe('page titles', function () {
     test('posts index page has the correct title', function () {
         get(route('posts.index'))
             ->assertOk()
-            ->assertSee('<title>所有文章</title>', false);
+            ->assertSee('<title>All articles</title>', false);
     });
 
     test('login page has the correct title', function () {
         get(route('login'))
             ->assertOk()
-            ->assertSee('<title>登入</title>', false);
+            ->assertSee('<title>Log In</title>', false);
     });
 
     test('register page has the correct title', function () {
@@ -35,13 +35,13 @@ describe('page titles', function () {
 
         get(route('register'))
             ->assertOk()
-            ->assertSee('<title>註冊</title>', false);
+            ->assertSee('<title>Register</title>', false);
     });
 
     test('forgot password page has the correct title', function () {
         get(route('password.request'))
             ->assertOk()
-            ->assertSee('<title>忘記密碼</title>', false);
+            ->assertSee('<title>Forgot password</title>', false);
     });
 
     test('reset password page has the correct title', function () {
@@ -49,7 +49,7 @@ describe('page titles', function () {
 
         get(route('password.reset', ['token' => 'fake-token', 'email' => $user->email]))
             ->assertOk()
-            ->assertSee('<title>重設密碼</title>', false);
+            ->assertSee('<title>Reset Password</title>', false);
     });
 
     test('verify email page has the correct title', function () {
@@ -58,7 +58,7 @@ describe('page titles', function () {
         $this->actingAs($user)
             ->get(route('verification.notice'))
             ->assertOk()
-            ->assertSee('<title>驗證電子郵件</title>', false);
+            ->assertSee('<title>Verify Email</title>', false);
     });
 
     test('posts create page has the correct title', function () {
@@ -66,7 +66,7 @@ describe('page titles', function () {
 
         get(route('posts.create'))
             ->assertOk()
-            ->assertSee('<title>新增文章</title>', false);
+            ->assertSee('<title>Add Article</title>', false);
     });
 
     test('posts edit page has the correct title', function () {
@@ -75,7 +75,7 @@ describe('page titles', function () {
 
         get(route('posts.edit', ['id' => $post->id]))
             ->assertOk()
-            ->assertSee('<title>編輯文章</title>', false);
+            ->assertSee('<title>Edit Article</title>', false);
     });
 
     test('posts show page has the correct title', function () {
@@ -91,7 +91,7 @@ describe('page titles', function () {
 
         get(route('notifications.index'))
             ->assertOk()
-            ->assertSee('<title>我的通知</title>', false);
+            ->assertSee('<title>My Notifications</title>', false);
     });
 
     test('settings users edit page has the correct title', function () {
@@ -99,7 +99,7 @@ describe('page titles', function () {
 
         get(route('settings.users.edit', ['id' => $user->id]))
             ->assertOk()
-            ->assertSee('<title>會員中心 - 編輯個人資料</title>', false);
+            ->assertSee('<title>Member Center - Edit Profile</title>', false);
     });
 
     test('settings users destroy page has the correct title', function () {
@@ -107,7 +107,7 @@ describe('page titles', function () {
 
         get(route('settings.users.destroy', ['id' => $user->id]))
             ->assertOk()
-            ->assertSee('<title>會員中心 - 刪除帳號</title>', false);
+            ->assertSee('<title>Member Center - Delete Account</title>', false);
     });
 
     test('settings users password edit page has the correct title', function () {
@@ -115,7 +115,7 @@ describe('page titles', function () {
 
         get(route('settings.users.password.edit', ['id' => $user->id]))
             ->assertOk()
-            ->assertSee('<title>會員中心 - 更改密碼</title>', false);
+            ->assertSee('<title>Member Center - Change Password</title>', false);
     });
 
     test('settings users passkeys edit page falls back to the default title', function () {
@@ -147,7 +147,7 @@ describe('page titles', function () {
 
         get(route('users.show', ['id' => $user->id]))
             ->assertOk()
-            ->assertSee('<title>'.e($user->name.' 的個人資訊').'</title>', false);
+            ->assertSee('<title>'.e($user->name.'\'s Personal Information').'</title>', false);
     });
 
     test('comments show page has the correct title for a comment with a user', function () {
@@ -157,7 +157,7 @@ describe('page titles', function () {
 
         get(route('comments.show', $comment->id))
             ->assertOk()
-            ->assertSee('<title>'.e($user->name.'的留言').'</title>', false);
+            ->assertSee('<title>'.e($user->name.'\'s comment').'</title>', false);
     });
 
     test('comments show page has the correct title for an anonymous comment', function () {
@@ -166,6 +166,6 @@ describe('page titles', function () {
 
         get(route('comments.show', $comment->id))
             ->assertOk()
-            ->assertSee('<title>訪客的留言</title>', false);
+            ->assertSee('<title>'.e('Visitor'.'\'s comment').'</title>', false);
     });
 });

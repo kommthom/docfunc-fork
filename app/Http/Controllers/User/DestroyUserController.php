@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Auth;
 class DestroyUserController extends Controller
 {
     /**
-     * 刪除用戶帳號
+     * Benutzerkonto löschen
      *
      * @return RedirectResponse
      */
     public function __invoke(Request $request, User $user)
     {
-        // 確認網址是否有效
+        // URL auf Gültigkeit prüfen
         abort_if(! $request->hasValidSignature(), 401);
 
         Auth::guard('web')->logout();
@@ -31,6 +31,6 @@ class DestroyUserController extends Controller
         $user->delete();
 
         return to_route('posts.index')
-            ->with('alert', ['status' => 'success', 'message' => '帳號已刪除！']);
+            ->with('alert', ['status' => 'success', 'message' => __('Account deleted!')]);
     }
 }

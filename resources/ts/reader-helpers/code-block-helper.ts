@@ -41,8 +41,8 @@ function createCopyCodeButton(codeElement: HTMLElement): HTMLButtonElement {
     // create a copy button
     const copyButton: HTMLButtonElement = document.createElement("button");
     copyButton.type = "button";
-    copyButton.setAttribute("aria-label", "複製程式碼");
-    copyButton.title = "複製程式碼";
+    copyButton.setAttribute("aria-label", "Copy code");
+    copyButton.title = "Copy code";
     // set button position
     copyButton.classList.add(...button.BASE_CLASS_NAME);
     copyButton.innerHTML = icon.CLIPBOARD;
@@ -67,12 +67,12 @@ function createCopyCodeButton(codeElement: HTMLElement): HTMLButtonElement {
 
                 // change the button icon to "Copied!" for 2 seconds
                 this.innerHTML = icon.CHECK;
-                this.setAttribute("aria-label", "已複製！");
-                this.title = "已複製！";
+                this.setAttribute("aria-label", "Copy！");
+                this.title = "Copy！";
                 resetTimer = setTimeout(() => {
                     this.innerHTML = icon.CLIPBOARD;
-                    this.setAttribute("aria-label", "複製程式碼");
-                    this.title = "複製程式碼";
+                    this.setAttribute("aria-label", "Copy code");
+                    this.title = "Copy code";
                     resetTimer = null;
                 }, 2000);
             },
@@ -86,8 +86,8 @@ function createCopyCodeButton(codeElement: HTMLElement): HTMLButtonElement {
 function createExpandCodeButton(modal: Modal, getPreOuterHTML: () => string): HTMLButtonElement {
     const expandCodeButton: HTMLButtonElement = document.createElement("button");
     expandCodeButton.type = "button";
-    expandCodeButton.setAttribute("aria-label", "放大檢視程式碼");
-    expandCodeButton.title = "放大檢視";
+    expandCodeButton.setAttribute("aria-label", "Zoom in to view code");
+    expandCodeButton.title = "Zoom in";
     expandCodeButton.classList.add(...button.BASE_CLASS_NAME);
     expandCodeButton.innerHTML = icon.ARROWS_ANGLE_EXPAND;
 

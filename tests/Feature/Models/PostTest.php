@@ -57,4 +57,3 @@ describe('isRevised', function () {
         expect($post->isRevised())->toBeTrue();
     });
 });
-

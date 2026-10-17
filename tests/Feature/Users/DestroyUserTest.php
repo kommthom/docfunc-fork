@@ -50,7 +50,7 @@ describe('destroy user', function () {
 
         Livewire::test('pages::settings.users.destroy', ['id' => $user->id])
             ->call('sendDestroyEmail', user: $user)
-            ->assertDispatched('toast', status: 'success', message: '已寄出信件！');
+            ->assertDispatched('toast', status: 'success', message: 'Letter sent!');
 
         Mail::assertQueued(DestroyUserMail::class);
     });
@@ -86,7 +86,7 @@ describe('destroy user', function () {
             ['user' => $user->id]
         );
 
-        // 讓時間經過 6 分鐘，使連結失效
+        // Allow 6 minutes to break the link
         $this->travel(6)->minutes();
 
         get($destroyUserLink)->assertStatus(401);

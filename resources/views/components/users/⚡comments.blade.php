@@ -60,7 +60,7 @@ new class extends Component
     }));
 </script>
 
-{{-- 會員留言 --}}
+{{-- Member Message --}}
 <div class="w-full space-y-6" x-data="usersCommentsPart" x-ref="userComments">
     @forelse ($comments as $comment)
         <x-dashed-card class="comment-card group relative" wire:key="comment-{{ $comment->id }}">
@@ -75,7 +75,7 @@ new class extends Component
                     {{ $comment->post->title }}
                 </span>
 
-                {{-- 留言 --}}
+                {{-- Leave a message --}}
                 <div class="rich-text">{!! $comment->body !!}</div>
             </div>
 
@@ -90,7 +90,7 @@ new class extends Component
     @empty
         <x-card class="flex h-32 items-center justify-center text-zinc-400 dark:text-zinc-600">
             <x-icons.exclamation-circle class="w-6" />
-            <span class="ml-2">找篇文章留言吧！</span>
+            <span class="ml-2">{{ __('Leave a comment on an article!') }}</span>
         </x-card>
     @endforelse
 

@@ -32,7 +32,7 @@ new class extends Component
     {
         $logout();
 
-        $this->dispatch('toast', status: 'success', message: '成功登出！');
+        $this->dispatch('toast', status: 'success', message: __('Successfully logged out!'));
 
         $this->redirect(route('login'), navigate: true);
     }
@@ -62,6 +62,15 @@ new class extends Component
 @endphp
 
 <header class="z-20 mb-6" id="header" x-data="layoutsHeaderPart">
+    <div class="grid-child container-below-top">
+        <div class="below-top card mybanner">
+            <div class="card-body">
+                <div id="mod-custom133" class="mod-custom custom">
+                    <p><img class="mybanner" src="{{ asset('images/Panorama/IMG_2094.jpeg') }}" alt="Panorama Heideblüte Lieblingsplatz" width="3451" height="746" loading="lazy" /></p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div
         class="relative hidden h-18 w-full items-center justify-center bg-zinc-50 transition-all duration-300 lg:flex dark:bg-zinc-800"
         id="desktop-header"
@@ -79,7 +88,7 @@ new class extends Component
                 {{-- make sure both url are decode in aws lambda --}}
                 :selected="urldecode(request()->url()) === urldecode(route('posts.index'))"
             >
-                全部文章
+                {{ __('All articles') }}
             </x-skew-underline-link>
 
             @foreach ($categories as $category)
@@ -117,7 +126,7 @@ new class extends Component
                         href="{{ route('register') }}"
                         wire:navigate
                     >
-                        註冊
+                        {{ __('Register') }}
                     </a>
                 @endif
 
@@ -127,7 +136,7 @@ new class extends Component
                     wire:navigate
                 >
                     <x-icons.door-open class="w-5" />
-                    <span class="ml-2">登入</span>
+                    <span class="ml-2">{{ __('Log In') }}</span>
                 </a>
             @endguest
 
@@ -176,22 +185,22 @@ new class extends Component
                     >
                         <x-dropdown.link href="{{ route('posts.create') }}">
                             <x-icons.pencil class="w-4" />
-                            <span class="ml-2">新增文章</span>
+                            <span class="ml-2">{{ __('Add Article') }}</span>
                         </x-dropdown.link>
 
                         <x-dropdown.link href="{{ route('users.show', ['id' => auth()->id()]) }}">
                             <x-icons.info-circle class="w-4" />
-                            <span class="ml-2">個人資訊</span>
+                            <span class="ml-2">{{ __('Personal Information') }}</span>
                         </x-dropdown.link>
 
                         <x-dropdown.link href="{{ route('settings.users.edit', ['id' => auth()->id()]) }}">
                             <x-icons.geer-fill class="w-4" />
-                            <span class="ml-2">設定</span>
+                            <span class="ml-2">{{ __('Settings') }}</span>
                         </x-dropdown.link>
 
-                        <x-dropdown.button wire:confirm="你確定要登出嗎？" wire:click="logout">
+                        <x-dropdown.button wire:confirm="{{ __('Are you sure you want to log out?') }}" wire:click="logout">
                             <x-icons.box-arrow-left class="w-4" />
-                            <span class="ml-2">登出</span>
+                            <span class="ml-2">{{ __('Log Out') }}</span>
                         </x-dropdown.button>
                     </x-dropdown.menu>
                 </div>
@@ -252,7 +261,7 @@ new class extends Component
                                 href="{{ route('register') }}"
                                 wire:navigate
                             >
-                                註冊
+                                {{ __('Register') }}
                             </a>
                         @endif
 
@@ -261,7 +270,7 @@ new class extends Component
                             href="{{ route('login') }}"
                             wire:navigate
                         >
-                            登入
+                            {{ __('Log In')  }}
                         </a>
                     @endguest
 
@@ -311,22 +320,22 @@ new class extends Component
                             >
                                 <x-dropdown.link href="{{ route('posts.create') }}">
                                     <x-icons.pencil class="w-4" />
-                                    <span class="ml-2">新增文章</span>
+                                    <span class="ml-2">{{ __('Add Article') }}</span>
                                 </x-dropdown.link>
 
                                 <x-dropdown.link href="{{ route('users.show', ['id' => auth()->id()]) }}">
                                     <x-icons.info-circle class="w-4" />
-                                    <span class="ml-2">個人資訊</span>
+                                    <span class="ml-2">{{ __('Personal Information') }}</span>
                                 </x-dropdown.link>
 
                                 <x-dropdown.link href="{{ route('settings.users.edit', ['id' => auth()->id()]) }}">
                                     <x-icons.geer-fill class="w-4" />
-                                    <span class="ml-2">設定</span>
+                                    <span class="ml-2">{{ __('Settings') }}</span>
                                 </x-dropdown.link>
 
-                                <x-dropdown.button wire:confirm="你確定要登出嗎？" wire:click="logout">
+                                <x-dropdown.button wire:confirm="{{ __('Are you sure you want to log out?') }}" wire:click="logout">
                                     <x-icons.box-arrow-left class="w-4" />
-                                    <span class="ml-2">登出</span>
+                                    <span class="ml-2">{{ __('Log Out') }}</span>
                                 </x-dropdown.button>
                             </x-dropdown.menu>
                         </div>
@@ -352,7 +361,7 @@ new class extends Component
                 wire:navigate
             >
                 <x-icons.home class="w-4" />
-                <span class="ml-2">全部文章</span>
+                <span class="ml-2">{{ __('All articles') }}</span>
             </a>
 
             @foreach ($categories as $category)

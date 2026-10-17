@@ -63,7 +63,7 @@ class Comment extends Model
     /**
      * @return Attribute<object{level: int, parent_count: int}|null, never>
      */
-    protected function hierarchy(): Attribute
+    public function hierarchy(): Attribute
     {
         $query = <<<'SQL'
         WITH RECURSIVE CommentHierarchy AS (

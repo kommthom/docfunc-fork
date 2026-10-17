@@ -1,31 +1,31 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://blobs.docfunc.com/docfunc-dark-badge.png" width="30%">
-    <img alt="Badge changing depending on mode." src="https://blobs.docfunc.com/docfunc-light-badge.png" width="30%">
+    <source media="(prefers-color-scheme: dark)" srcset="https://blob.t-benninghaus.de/docfunc-dark-badge.png" width="30%">
+    <img alt="Badge changing depending on mode." src="https://blob.t-benninghaus/docfunc-light-badge.png" width="30%">
   </picture>
 </p>
 
 <p align="center">
-  <img src="https://github.com/YilanBoy/docfunc/actions/workflows/tests.yaml/badge.svg" alt="Tests">
-  <a href="https://codecov.io/gh/YilanBoy/docfunc" >
-    <img src="https://codecov.io/gh/YilanBoy/docfunc/graph/badge.svg?token=K2V2ANX2LW" alt="Codecov"/>
+  <img src="https://github.com/kommthom/t-benninghaus/actions/workflows/tests.yaml/badge.svg" alt="Tests">
+  <a href="https://codecov.io/gh/kommthom/t-benninghaus" >
+    <img src="https://codecov.io/gh/kommthom/t-benninghaus/graph/badge.svg?token=K2V2ANX2LW" alt="Codecov"/>
   </a>
 </p>
 
-## Introduction
+## Einführung
 
-docfunc is a personal blog built on Laravel 13, Livewire 4, and Tailwind CSS 4, used as a Laravel learning playground and powered by CKEditor 5 for authoring, Algolia for full-text search, and AWS S3 for image uploads.
+t-benninghaus ist ein persönlicher Blog, der auf Laravel 13, Livewire 4 und Tailwind CSS 4 basiert, als Laravel-Lernspielplatz verwendet wird und von CKEditor 5 für die Erstellung, Algolia für die Volltextsuche und AWS S3 für Bild-Uploads unterstützt wird.
 
 ## Features
 
-- **Posts** — CKEditor 5 authoring with Shiki syntax highlighting, S3 image uploads, soft deletes with mass-prune, RSS feed via `spatie/laravel-feed`, and Algolia full-text search.
-- **Comments** — Hierarchical threads with queued email and database notifications.
-- **Authentication** — Login, registration, email verification, and account deletion via signed mail.
-- **WebAuthn passkeys** — Register, manage, and sign in with passkeys.
-- **Tags & Categories** — Tag input via Tagify with many-to-many tags and per-post categories.
-- **oEmbed** — Twitter and YouTube oEmbed proxy endpoints.
-- **Bot protection** — Cloudflare Turnstile on public forms.
-- **Settings** — Cached application settings via a `Setting` model and service.
+- **Posts** — CKEditor-5-Authoring mit Shiki-Syntaxhervorhebung, S3-Bild-Uploads, Soft-Deletes mit Massenlöschung, RSS-Feed via `spatie/laravel-feed`, und Algolia Volltextsuche.
+- **Comments** — Hierarchische Threads mit E-Mail- und Datenbankbenachrichtigungen über eine Warteschlange.
+- **Authentication** — Anmeldung, Registrierung, E-Mail-Verifizierung und Kontolöschung per signierter E-Mail.
+- **WebAuthn passkeys** — Registrieren, verwalten und anmelden mit Passkeys.
+- **Tags & Categories** — Tag-Eingabe mittels Tagify mit Many-to-Many-Tags und beitragsbezogenen Kategorien.
+- **oEmbed** — Twitter und YouTube oEmbed proxy endpoints.
+- **Bot protection** — Cloudflare Turnstile auf öffentlichen Formularen.
+- **Settings** — Zugriff auf Anwendungseinstellungen über ein `Setting`-Modell und einen Service.
 
 ## Tech stack
 
@@ -39,8 +39,8 @@ docfunc is a personal blog built on Laravel 13, Livewire 4, and Tailwind CSS 4, 
 
 ### Frontend
 
-- Livewire 4 with `livewire/blaze`
-- Tailwind CSS 4 (via `@tailwindcss/vite`) and `@tailwindcss/typography`
+- Livewire 4 mit `livewire/blaze`
+- Tailwind CSS 4 (via `@tailwindcss/vite`) und `@tailwindcss/typography`
 - Vite 8
 - TypeScript 5
 - CKEditor 5
@@ -48,108 +48,108 @@ docfunc is a personal blog built on Laravel 13, Livewire 4, and Tailwind CSS 4, 
 - Tagify (`@yaireo/tagify`)
 - `@simplewebauthn/browser`
 
-### Integrations
+### Integrationen
 
 - Algolia
 - AWS S3
 - Cloudflare Turnstile
 - Bref (AWS Lambda)
 
-## Requirements
+## Vorraussetzungen
 
 - PHP `^8.4`
 - Composer
-- Node.js and npm
+- Node.js und npm
 
-> [!NOTE]
-> SQLite is the default database. Any Laravel-supported database (MySQL, PostgreSQL, etc.) works with a few env tweaks.
+> [!NOTIZ]
+> SQLite ist die Standarddatenbank. Jede von Laravel unterstützte Datenbank (MySQL, PostgreSQL usw.) funktioniert mit ein paar Anpassungen der Umgebungsvariablen.
 
 ## Installation
 
-Clone the repository:
+Klone das Repository.:
 
 ```sh
-git clone https://github.com/YilanBoy/docfunc.git
-cd docfunc
+git clone https://github.com/kommthom/t-benninghaus.git
+cd t-benninghaus
 ```
 
-Install PHP dependencies:
+Installiere PHP Abhängigkeiten:
 
 ```sh
 composer install
 ```
 
-Copy the example env file:
+Kopiere die example env Datei:
 
 ```sh
 cp .env.example .env
 ```
 
-Generate the application key:
+Generiere den Anwendungsschlüssel:
 
 ```sh
 php artisan key:generate
 ```
 
-Create the SQLite database file (skip if you're not using the default SQLite driver):
+Erstelle die SQLite-Datenbankdatei (überspringe diesen Schritt, wenn Du nicht den Standard-SQLite-Treiber verwendest):
 
 ```sh
 touch database/database.sqlite
 ```
 
-Run migrations:
+Führe die Migrationen aus:
 
 ```sh
 php artisan migrate
 ```
 
-Install JavaScript dependencies:
+Installiere JavaScript Abhängigkeiten:
 
 ```sh
 npm install
 ```
 
-Start the Vite dev server (or `npm run build` for a production bundle):
+Starte den Vite-Entwicklungsserver (oder `npm run build` für ein Produktions-Bundle).:
 
 ```sh
 npm run dev
 ```
 
-Start the Laravel dev server:
+Starte den Laravel dev server:
 
 ```sh
 php artisan serve
 ```
 
-> [!NOTE]
-> `composer create-project` would auto-run env copy, key generation, and migrations via composer scripts. A plain `git clone` does not, which is why these steps are spelled out.
+> [!NOTIZ]
+> `composer create-project` würde das Kopieren der Umgebungsvariablen, die Schlüsselgenerierung und die Migrationen automatisch über Composer-Skripte ausführen. Ein einfaches `git clone` tut dies nicht; deshalb sind diese Schritte explizit aufgeführt.
 
-## Configuration
+## Konfiguration
 
-- **Database** — defaults to SQLite (`database/database.sqlite`). Switch via `DB_CONNECTION` and the standard `DB_*` vars in `.env`.
-- **Mail** — defaults to `MAIL_MAILER=log`. Set SMTP vars for real delivery.
-- **Filesystem & S3** — `FILESYSTEM_DISK=local` by default. CKEditor image uploads use S3; set `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_DEFAULT_REGION`, `AWS_BUCKET`.
-- **Algolia / Scout** — set `ALGOLIA_APP_ID`, `ALGOLIA_SECRET`. `SCOUT_PREFIX` namespaces indexes per environment.
-- **Cloudflare Turnstile** — set `CAPTCHA_SITE_KEY` and `CAPTCHA_SECRET_KEY`. Default values in `.env.example` are Cloudflare's "always pass" test keys.
-- **Octane** — `OCTANE_SERVER` accepts `swoole`, `roadrunner`, or `frankenphp`. Default in `.env.example` is `swoole`.
+- **Database** — Standard ist SQLite („database/database.sqlite“). Wechsel über „DB_CONNECTION“ und die Standardvariablen „DB_*“ in „.env“.
+- **Mail** — Standardmäßig auf `MAIL_MAILER=log` gesetzt. Für den tatsächliche Versand die SMTP-Variablen konfigurieren.
+- **Filesystem & S3** — Standardmäßig ist `FILESYSTEM_DISK=local` eingestellt. Für Bild-Uploads im CKEditor wird S3 verwendet; konfiguriere dazu `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_DEFAULT_REGION` und `AWS_BUCKET`.
+- **Algolia / Scout** — Lege `ALGOLIA_APP_ID` ​​und `ALGOLIA_SECRET` fest. `SCOUT_PREFIX` weist Indizes je nach Umgebung einen Namensraum zu.
+- **Cloudflare Turnstile** — Lege „CAPTCHA_SITE_KEY“ und „CAPTCHA_SECRET_KEY“ fest. Standardwerte in „.env.example“ sind die „always pass" -Testschlüssel von Cloudflare.
+- **Octane** — `OCTANE_SERVER` akzeptiert `swoole`, `roadrunner`, oder `frankenphp`. Standard in `.env.example` ist `swoole`.
 
-## Development
+## Entwicklung
 
 - `php artisan serve` — dev server.
-- `npm run dev` — Vite dev server with HMR.
+- `npm run dev` — Vite dev server mit HMR.
 - `php artisan octane:start` — production-style server (uses `OCTANE_SERVER`).
-- `php artisan pail` — tail application logs.
-- `php artisan ide-helper:generate` and `php artisan ide-helper:models` — generate IDE autocomplete metadata.
+- `php artisan pail` — Anwendungsprotokolle in Echtzeit verfolgen
+- `php artisan ide-helper:generate` und `php artisan ide-helper:models` — Metadaten für die IDE-Autovervollständigung generieren.
 
-## Testing & code quality
+## Testen & Code Qualität
 
-The project uses Pest 4 (with `pest-plugin-browser` powered by Playwright), Larastan/PHPStan at level 5, and Laravel Pint. The one-shot CI script runs all three:
+Das Projekt verwendet Pest 4 (mit `pest-plugin-browser` auf Basis von Playwright), Larastan/PHPStan auf Level 5 sowie Laravel Pint. Das CI-Skript führt alle drei aus:
 
 ```sh
 composer ci
 ```
 
-Or run them individually:
+Oder führe sie einzeln aus:
 
 ```sh
 php artisan test --parallel    # or: vendor/bin/pest --parallel
@@ -157,21 +157,21 @@ vendor/bin/phpstan analyse --memory-limit=2G
 vendor/bin/pint --parallel
 ```
 
-> [!NOTE]
-> Tests run against an in-memory SQLite database with Scout's `collection` driver (configured in `phpunit.xml`).
+> [!NOTIZ]
+> Die Tests werden gegen eine In-Memory-SQLite-Datenbank mit dem `collection`-Treiber von Scout ausgeführt (konfiguriert in der `phpunit.xml`).
 
 ## Deployment
 
 ### Octane
 
-docfunc runs on [Laravel Octane](https://laravel.com/docs/octane), which supports three application servers — Swoole, RoadRunner, and FrankenPHP. Pick one via `OCTANE_SERVER` and start it with:
+t-benninghaus läuft auf [Laravel Octane](https://laravel.com/docs/octane), das drei Anwendungsserver unterstützt: Swoole, RoadRunner und FrankenPHP. Wähle einen davon über `OCTANE_SERVER` aus und starte ihn mit:
 
 ```sh
 php artisan octane:start --server=$OCTANE_SERVER --host=0.0.0.0 --port=8000
 ```
 
-> [!NOTE]
-> Install Swoole via PECL (`pecl install swoole`) or apt (`sudo add-apt-repository ppa:ondrej/php` then `sudo apt-get install php8.4-swoole`). For the other servers, see <https://roadrunner.dev> and <https://frankenphp.dev>.
+> [!NOTIZ]
+> Installiere Swoole über PECL (`pecl install swoole`) oder apt (`sudo add-apt-repository ppa:ondrej/php` und anschließend `sudo apt-get install php8.4-swoole`). Informationen zu den anderen Servern finden Sie unter <https://roadrunner.dev> und <https://frankenphp.dev>.
 
 ### Supervisor
 
@@ -206,13 +206,13 @@ stopwaitsecs=3600
 
 ### Scheduler
 
-Edit the crontab:
+Edititier die crontab:
 
 ```sh
 crontab -e
 ```
 
-Add the following entry to run the [Laravel scheduler](https://laravel.com/docs/scheduling) every minute:
+Füge den folgenden Eintrag hinzu, um den Laravel-Planer (https://laravel.com/docs/scheduling) jede Minute auszuführen:
 
 ```text
 * * * * * cd /var/www/docfunc && php artisan schedule:run >> /dev/null 2>&1
@@ -220,9 +220,9 @@ Add the following entry to run the [Laravel scheduler](https://laravel.com/docs/
 
 ### Serverless (Bref / AWS Lambda)
 
-The project bundles `bref/bref` and `bref/laravel-bridge` for AWS Lambda. Production runs as Lambda function `docfunc-production-web` in `us-west-2`. See <https://bref.sh> for setup.
+Das Projekt bündelt `bref/bref` und `bref/laravel-bridge` für AWS Lambda. Die Produktion läuft als Lambda-Funktion `docfunc-production-web` in `us-west-2`. Informationen zur Einrichtung finden Sie unter <https://bref.sh>.
 
 ## CI
 
-- **Tests** (`.github/workflows/tests.yaml`) — runs on PRs and pushes to `main`, matrix over PHP 8.4 and 8.5; runs PHPStan, Pint (`--test`), and Pest with coverage uploaded to Codecov; sends status to Telegram.
-- **Maintenance toggle** (`.github/workflows/maintenance-mode-toggle.yaml`) — manual dispatch; toggles `MAINTENANCE_MODE` on the `docfunc-production-web` Lambda function.
+- **Tests** (`.github/workflows/tests.yaml`) — Läuft bei Pull-Requests und Pushes auf `main` mit einer Matrix für PHP 8.4 und 8.5; führt PHPStan, Pint (`--test`) und Pest aus (mit Upload der Code-Abdeckung an Codecov) und sendet Statusmeldungen an Telegram.
+- **Maintenance toggle** (`.github/workflows/maintenance-mode-toggle.yaml`) — Jährlicher Versand; schaltet den „MAINTENANCE MODE“ (Wartungsmodus) der Lambda-Funktion `docfunc-production-web` ein.

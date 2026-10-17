@@ -18,7 +18,7 @@ new class extends Component
 
     public function render()
     {
-        Head::title($this->user->name.' 的個人資訊');
+        Head::title($this->user->name . '\'s ' . __('Personal Information'));
 
         return $this->view();
     }

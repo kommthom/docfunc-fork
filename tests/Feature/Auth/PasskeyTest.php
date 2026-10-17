@@ -13,11 +13,13 @@ test('passkey can be registered', function () {
 
     loginAsUser($user);
 
+    // 'id'   => Uri::of(config('app.url'))->host(),
+    // 'name' => config('app.name'),
     Session::flash('passkey-registration-options', json_encode([
         'challenge'              => 'SlhvbldrUGpJeldEUHNrSA',
         'rp'                     => [
-            'id'   => Uri::of(config('app.url'))->host(),
-            'name' => config('app.name'),
+            'id'   => Uri::of("https://docfunc.test")->host(),
+            'name' => 'docfunc',
         ],
         'user'                   => [
             'id'          => 'MQ',
@@ -55,7 +57,7 @@ test('passkey can be registered', function () {
         ]),
     ])
         ->call('store')
-        ->assertDispatched('toast', status: 'success', message: '成功建立密碼金鑰！')
+        ->assertDispatched('toast', status: 'success', message: 'Passkey created successfully!')
         ->assertDispatched('reset-passkey-name');
 
     expect($user->passkeys)->toHaveCount(1);

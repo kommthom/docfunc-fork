@@ -22,7 +22,7 @@ new class extends Component
 
         $post->withoutTimestamps(fn () => $post->delete());
 
-        $this->dispatch('toast', status: 'success', message: '成功刪除文章！');
+        $this->dispatch('toast', status: 'success', message: __('Successfully deleted post!'));
 
         $this->redirectRoute(
             name: 'users.show',
@@ -40,7 +40,7 @@ new class extends Component
 
 <div class="sticky top-1/2 flex -translate-y-1/2 flex-col space-y-2">
     {{-- Home --}}
-    <x-tooltip :tooltip-text="'返回首頁'" :tooltip-position="'right'">
+    <x-tooltip :tooltip-text="'Return to homepage'" :tooltip-position="'right'">
         <a
             class="group flex h-14 w-14 cursor-pointer items-center justify-center text-zinc-500 dark:text-zinc-400"
             href="{{ route('posts.index') }}"
@@ -52,7 +52,7 @@ new class extends Component
     </x-tooltip>
 
     <!-- Facebook share button -->
-    <x-tooltip :tooltip-text="'分享至 FB'" :click-text="'好耶！'" :tooltip-position="'right'">
+    <x-tooltip :tooltip-text="'Share to FB'" :click-text="'Yay!'" :tooltip-position="'right'">
         <button
             class="group flex h-14 w-14 cursor-pointer items-center justify-center text-zinc-500 dark:text-zinc-400"
             data-sharer="facebook"
@@ -65,7 +65,7 @@ new class extends Component
     </x-tooltip>
 
     <!-- x share button -->
-    <x-tooltip :tooltip-text="'分享至 X'" :click-text="'稍等...'" :tooltip-position="'right'">
+    <x-tooltip :tooltip-text="'Share to X'" :click-text="'Just a moment...'" :tooltip-position="'right'">
         <button
             class="group flex h-14 w-14 cursor-pointer items-center justify-center text-zinc-500 dark:text-zinc-400"
             data-sharer="x"
@@ -79,7 +79,7 @@ new class extends Component
     </x-tooltip>
 
     <!-- Copy link button -->
-    <x-tooltip :tooltip-text="'複製連結'" :click-text="'好囉！'" :tooltip-position="'right'">
+    <x-tooltip :tooltip-text="'Copy link'" :click-text="'Got it!'" :tooltip-position="'right'">
         <button
             class="group flex h-14 w-14 cursor-pointer items-center justify-center text-zinc-500 dark:text-zinc-400"
             data-clipboard="{{ urldecode(request()->fullUrl()) }}"
@@ -89,11 +89,11 @@ new class extends Component
         </button>
     </x-tooltip>
 
-    {{-- 編輯文章 --}}
+    {{-- Edit Article --}}
     @if (auth()->id() === $authorId)
         <div class="h-[2px] w-14 bg-zinc-300 dark:bg-zinc-600"></div>
 
-        <x-tooltip :tooltip-text="'編輯文章'" :tooltip-position="'right'">
+        <x-tooltip :tooltip-text="'Edit Article'" :tooltip-position="'right'">
             <a
                 class="group flex h-14 w-14 cursor-pointer items-center justify-center text-zinc-500 dark:text-zinc-400"
                 href="{{ route('posts.edit', ['id' => $postId]) }}"
@@ -103,14 +103,12 @@ new class extends Component
                 <x-icons.pencil-square class="w-6 text-2xl transition duration-150 ease-in group-hover:scale-125 group-hover:rotate-12" />
             </a>
         </x-tooltip>
-
-        {{-- 刪除 --}}
-        <x-tooltip :tooltip-text="'刪除文章'" :tooltip-position="'right'">
+        {{-- Delete --}}
+        <x-tooltip :tooltip-text="'Delete Article'" :tooltip-position="'right'">
             <button
                 class="group flex h-14 w-14 cursor-pointer items-center justify-center text-zinc-500 dark:text-zinc-400"
                 type="button"
-                title="刪除文章"
-                wire:confirm="你確定要刪除文章嗎？（7 天之內可以還原）"
+                title="{{ __('Delete Article') }}""{{ __('Are you sure you want to delete the article? (It can be restored within 7 days)') }}"
                 wire:click="destroy({{ $postId }})"
             >
                 <x-icons.trash class="w-6 text-2xl transition duration-150 ease-in group-hover:scale-125 group-hover:rotate-12" />

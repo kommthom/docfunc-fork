@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->integer('post_count')->default(0)->comment('文章數');
+            $table->integer('post_count')->default(0)->comment('Anzahl Artikel');
         });
     }
 };

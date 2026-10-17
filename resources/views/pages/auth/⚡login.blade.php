@@ -61,7 +61,7 @@ new class extends Component
 
         // If the user has PassKeys, he won't be able to log in using just the password
         if (Auth::user()->passkeys()->exists()) {
-            session()->flash('status', '您的帳號已註冊密碼金鑰，請使用密碼金鑰進行登入');
+            session()->flash('status', __('Your account has registered a passkey, please use the passkey to log in.'));
 
             Auth::logout();
 
@@ -71,7 +71,7 @@ new class extends Component
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
 
-        $this->dispatch('toast', status: 'success', message: '登入成功！');
+        $this->dispatch('toast', status: 'success', message: __('Login successful!'));
 
         $this->redirectIntended(route('root', absolute: false), navigate: true);
     }
@@ -86,7 +86,7 @@ new class extends Component
             $publicKeyCredential = $serializer->fromJson($data['answer'], PublicKeyCredential::class);
 
             if (! $publicKeyCredential->response instanceof AuthenticatorAssertionResponse) {
-                $this->dispatch('toast', status: 'danger', message: '密碼金鑰無效');
+                $this->dispatch('toast', status: 'danger', message: __('Invalid Passkey'));
 
                 return;
             }
@@ -99,7 +99,7 @@ new class extends Component
                 ->first();
 
             if (! $passkey) {
-                $this->dispatch('toast', status: 'danger', message: '密碼金鑰無效');
+                $this->dispatch('toast', status: 'danger', message: __('Invalid Passkey'));
 
                 return;
             }
@@ -110,7 +110,7 @@ new class extends Component
             $options = Session::get('passkey-authentication-options');
 
             if (! $options) {
-                $this->dispatch('toast', status: 'danger', message: '密碼金鑰無效');
+                $this->dispatch('toast', status: 'danger', message: __('Invalid Passkey'));
 
                 return;
             }
@@ -128,7 +128,7 @@ new class extends Component
                 userHandle: null
             );
         } catch (SerializerExceptionInterface|AuthenticatorResponseVerificationException) {
-            $this->dispatch('toast', status: 'danger', message: '密碼金鑰無效');
+            $this->dispatch('toast', status: 'danger', message: __('Invalid Passkey'));
 
             return;
         }
@@ -143,7 +143,7 @@ new class extends Component
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
 
-        $this->dispatch('toast', status: 'success', message: '登入成功！');
+        $this->dispatch('toast', status: 'success', message: __('Login successful!'));
 
         $this->redirectIntended(route('root', absolute: false), navigate: true);
     }
@@ -187,7 +187,7 @@ new class extends Component
             if (!this.browserSupportsWebAuthn()) {
                 this.$wire.$dispatch('toast', {
                     status: 'danger',
-                    message: '不支援 WebAuthn',
+                    message: 'WebAuthn not supported',
                 });
 
                 return;
@@ -205,7 +205,7 @@ new class extends Component
             } catch (error) {
                 this.$wire.$dispatch('toast', {
                     status: 'danger',
-                    message: '登入失敗，請稍後再試',
+                    message: 'Login failed, please try again later',
                 });
 
                 return;
@@ -224,49 +224,49 @@ new class extends Component
             wire:navigate
         >
             <x-icons.arrow-left-circle class="w-6" />
-            <span class="ml-2">返回文章列表</span>
+            <span class="ml-2">{{ __('Return to article list') }}</span>
         </a>
     </div>
 
     <div class="container mx-auto">
         <div class="flex min-h-screen flex-col items-center justify-center px-4">
-            {{-- 頁面標題 --}}
+            {{-- page title --}}
             <div class="flex items-center fill-current text-2xl text-zinc-700 dark:text-zinc-50">
                 <x-icons.door-open class="w-6" />
-                <span class="ml-4">登入</span>
+                <span class="ml-4">{{ __('Log In') }}</span>
             </div>
 
-            {{-- 登入表單 --}}
+            {{-- Login form --}}
             <x-card class="mt-4 w-full overflow-hidden sm:max-w-md">
-                {{-- Session 狀態訊息 --}}
+                {{-- Session status message --}}
                 <x-auth-session-status class="mb-6" :status="session('status')" />
 
-                {{-- 驗證錯誤訊息 --}}
+                {{-- validate error message --}}
                 <x-auth-validation-errors class="mb-6" :errors="$errors" />
 
                 <form id="login" wire:submit="login">
-                    {{-- 信箱 --}}
+                    {{-- mailbox --}}
                     <x-floating-label-input
                         id="email"
                         type="text"
-                        placeholder="電子信箱"
+                        placeholder="{{ __('Email') }}"
                         wire:model="email"
                         required
                         autofocus
                     />
 
-                    {{-- 密碼 --}}
+                    {{-- Password --}}
                     <x-floating-label-input
                         class="mt-6"
                         id="password"
                         type="password"
-                        placeholder="密碼"
+                        placeholder="{{ __('Password') }}"
                         wire:model="password"
                         required
                     />
 
                     <div class="mt-6 flex items-center justify-between">
-                        <x-checkbox id="remember" name="remember" wire:model="remember"> 記住我 </x-checkbox>
+                        <x-checkbox id="remember" name="remember" wire:model="remember"> {{ __('Remember me') }}</x-checkbox>
 
                         @if (Route::has('password.request'))
                             <a
@@ -279,7 +279,7 @@ new class extends Component
                         @endif
                     </div>
 
-                    <x-button class="mt-6 w-full">登入</x-button>
+                    <x-button class="mt-6 w-full">{{ __('Log In') }}</x-button>
                 </form>
 
                 {{-- Passkey login --}}
@@ -288,7 +288,7 @@ new class extends Component
                         <div class="w-full border-t border-zinc-200 dark:border-zinc-500"></div>
                     </div>
                     <div class="relative flex justify-center text-base font-medium">
-                        <span class="bg-zinc-50 px-6 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50">或者</span>
+                        <span class="bg-zinc-50 px-6 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50">{{ __('Or') }}</span>
                     </div>
                 </div>
 
@@ -299,7 +299,7 @@ new class extends Component
                         x-on:click="loginWithPasskey"
                     >
                         <x-icons.fingerprint class="size-5" />
-                        <span>使用密碼金鑰</span>
+                        <span>{{ __('Use Passkeys') }}</span>
                     </button>
                 </div>
             </x-card>

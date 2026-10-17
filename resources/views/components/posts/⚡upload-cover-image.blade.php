@@ -46,7 +46,7 @@ new class extends Component
             );
         },
         removeCoverImage() {
-            if (confirm('你確定要刪除封面圖嗎？')) {
+            if (confirm('Are you sure you want to delete the cover image?')) {
                 this.imageUrl = null;
             }
         },
@@ -79,10 +79,10 @@ new class extends Component
                 if (response.ok) {
                     this.imageUrl = result.url;
                 } else {
-                    this.errorMessage = result.error?.message || '上傳失敗，請稍後再試';
+                    this.errorMessage = result.error?.message || 'Upload failed, please try again later.';
                 }
             } catch (error) {
-                this.errorMessage = '上傳過程發生錯誤';
+                this.errorMessage = 'An error occurred during the upload process';
             } finally {
                 this.uploading = false;
                 event.target.value = '';
@@ -108,7 +108,7 @@ new class extends Component
             <x-icons.x-circle class="size-24 opacity-0 transition-all duration-150 group-hover:text-zinc-50 group-hover:opacity-100" />
         </button>
 
-        <span class="absolute top-2 right-2 inline-flex items-center rounded-md bg-emerald-50 px-2 py-1 text-sm font-medium text-emerald-700 ring-1 ring-emerald-700/10 ring-inset dark:bg-gray-50 dark:text-gray-700 dark:ring-gray-700/10">封面圖</span>
+        <span class="absolute top-2 right-2 inline-flex items-center rounded-md bg-emerald-50 px-2 py-1 text-sm font-medium text-emerald-700 ring-1 ring-emerald-700/10 ring-inset dark:bg-gray-50 dark:text-gray-700 dark:ring-gray-700/10">Cover image</span>
     </div>
 
     {{-- Upload Area --}}
@@ -132,7 +132,7 @@ new class extends Component
 
             <x-icons.animate-spin class="size-10" x-cloak x-show="uploading" />
 
-            <p>封面圖 (jpg, jpeg or png)</p>
+            <p>{{ __('Preview Image (jpg, jpeg or png)') }}</p>
 
             <template x-if="errorMessage">
                 <span class="text-red-500" x-text="errorMessage"></span>

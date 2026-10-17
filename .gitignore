@@ -14,9 +14,11 @@
 .DS_Store
 .env
 .env.backup
-.env.production
+.env.test
+.env.prod
 .phpactor.json
 .phpunit.result.cache
+deploy.php
 Homestead.json
 Homestead.yaml
 npm-debug.log
@@ -27,6 +29,7 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+*.bak
 
 # Laravel Boost
 /.ai

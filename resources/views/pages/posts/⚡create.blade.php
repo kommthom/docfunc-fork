@@ -41,7 +41,7 @@ new class extends Component
 
         $this->form->clearAutoSave($this->autoSaveKey);
 
-        $this->dispatch('toast', status: 'success', message: '成功新增文章！');
+        $this->dispatch('toast', status: 'success', message: __('Successfully added article!'));
 
         $this->redirect($post->link_with_slug, navigate: true);
     }
@@ -75,7 +75,7 @@ new class extends Component
                     {{-- title --}}
                     <div class="flex items-center fill-current text-2xl text-zinc-700 dark:text-zinc-50">
                         <x-icons.pencil class="w-6" />
-                        <span class="ml-4">新增文章</span>
+                        <span class="ml-4">{{ __('Add Article') }}</span>
                     </div>
 
                     {{-- editor --}}
@@ -97,7 +97,7 @@ new class extends Component
                                         required
                                     >
                                         @slot('label')
-                                            分類
+                                            {{ __('Classification') }}
                                         @endslot
 
                                         @foreach ($categories as $category)
@@ -109,7 +109,7 @@ new class extends Component
                                 {{-- post private setting --}}
                                 <div class="col-span-2 flex items-center md:col-span-1">
                                     <x-checkbox id="is-private" name="is-private" wire:model.change="form.is_private">
-                                        文章不公開
+                                        {{ __('Article not public') }}
                                     </x-checkbox>
                                 </div>
 
@@ -120,7 +120,7 @@ new class extends Component
                                         name="title"
                                         type="text"
                                         wire:model.live.debounce.500ms="form.title"
-                                        placeholder="文章標題"
+                                        placeholder="{{ __('Article title') }}"
                                         required
                                         autofocus
                                     />
@@ -152,7 +152,7 @@ new class extends Component
                                         <x-icons.animate-spin />
                                     </span>
 
-                                    <span class="ml-2">儲存</span>
+                                    <span class="ml-2">{{ __('Save') }}</span>
                                 </x-button>
                             </div>
                         </form>

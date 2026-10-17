@@ -57,13 +57,13 @@ new class extends Component
     wire:ignore
     x-data="tagifyComponent"
 >
-    <label class="hidden" for="tags">標籤 (最多 5 個)</label>
+    <label class="hidden" for="tags">{{ __('Tags (max 5)') }}</label>
 
     <input
         class="tagify-custom-look inline-flex w-full items-center rounded-md border-zinc-300! bg-white dark:border-zinc-600! dark:bg-zinc-700"
         id="tags"
         type="text"
-        placeholder="標籤 (最多 5 個)"
+        placeholder="{{ __('Tags (max 5)') }}"
         x-ref="tags"
     />
 </div>

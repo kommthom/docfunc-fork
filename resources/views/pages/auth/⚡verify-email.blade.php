@@ -41,16 +41,16 @@ new class extends Component
             wire:navigate
         >
             <x-icons.arrow-left-circle class="w-6" />
-            <span class="ml-2">返回文章列表</span>
+            <span class="ml-2">{{ __('Return to article list') }}</span>
         </a>
     </div>
 
     <div class="container mx-auto">
         <div class="flex min-h-screen flex-col items-center justify-center px-4">
-            {{-- 頁面標題 --}}
+            {{-- page title --}}
             <div class="flex items-center fill-current text-2xl text-zinc-700 dark:text-zinc-50">
                 <x-icons.person-check class="w-6" />
-                <span class="ml-4">驗證 Email</span>
+                <span class="ml-4">{{ __('Verify Email') }}</span>
             </div>
 
             <x-card class="mt-4 w-full overflow-hidden sm:max-w-md">

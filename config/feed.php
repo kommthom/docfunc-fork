@@ -20,9 +20,9 @@ return [
              */
             'url' => '/post/feed',
 
-            'title' => 'DocFunc',
-            'description' => '紀錄生活上的大小事！',
-            'language' => 'zh-TW',
+            'title' => 't-benninghaus.de',
+            'description' => 'Record the big and small things in life!',
+            'language' => 'en-US',
 
             /*
              * The image to display for the feed.  For Atom feeds, this is displayed as

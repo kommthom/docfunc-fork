@@ -7,14 +7,14 @@ namespace App\Services;
 class FormatTransferService
 {
     /**
-     * 將 tag 的 JSON 資料轉成 array
+     * Convert the JSON data of the tag to an array
      * ex. [{"id":1,"name":"PHP"},{"id":2,"name":"Laravel"}]
      *
      * @return array<int, int|string>
      */
     public function tagsJsonToTagIdsArray(?string $tagsJson = null): array
     {
-        // 沒有設定標籤
+        // No tags set
         if (is_null($tagsJson)) {
             return [];
         }
@@ -26,7 +26,7 @@ class FormatTransferService
             return [];
         }
 
-        // 生成由 tag ID 組成的 Array
+        // Generate an array of tag IDs.
         return collect($tags)
             ->map(fn (object $tag): int|string => $tag->id)
             ->all();

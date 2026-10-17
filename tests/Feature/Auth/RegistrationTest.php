@@ -237,5 +237,5 @@ test('guests cannot see the register button', function () {
 
     Cache::forget('setting:allow_register');
 
-    Livewire::test('layouts.header')->assertDontSeeText('註冊');
+    Livewire::test('layouts.header')->assertDontSeeText('Register');
 });

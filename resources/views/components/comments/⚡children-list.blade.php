@@ -45,7 +45,7 @@ new class extends Component
     {
         if ($this->childrenCount > 0) {
             $this->loadMoreButton['is_active'] = true;
-            $this->loadMoreButton['label'] = $this->childrenCount.' 則回覆';
+            $this->loadMoreButton['label'] = $this->childrenCount . __(' Replies');
         }
     }
 
@@ -88,7 +88,8 @@ new class extends Component
             $this->loadMoreButton['is_active'] = false;
         }
 
-        $this->loadMoreButton['label'] = '顯示更多回覆';
+        $this->loadMoreButton['label'] = __('Show More Replies');
+
 
         $comments = array_slice($comments, 0, self::PER_PAGE, true);
 
@@ -114,7 +115,7 @@ new class extends Component
 
         // Check the comment is not deleted
         if ($comment === null) {
-            $this->dispatch(event: 'toast', status: 'danger', message: '該留言已被刪除！');
+            $this->dispatch(event: 'toast', status: 'danger', message: __('This comment has been deleted!'));
 
             return;
         }
@@ -125,7 +126,7 @@ new class extends Component
 
         unset($this->comments[$id]);
 
-        $this->dispatch(event: 'toast', status: 'success', message: '成功刪除留言！');
+        $this->dispatch(event: 'toast', status: 'success', message: __('Successfully deleted comment!'));
     }
 };
 ?>
@@ -151,7 +152,7 @@ new class extends Component
                     @else
                         <x-icons.question-circle-fill class="size-10 text-zinc-300 dark:text-zinc-500" />
 
-                        <span class="dark:text-zinc-50">訪客</span>
+                        <span class="dark:text-zinc-50">{{ __('Visitor') }}</span>
                     @endif
 
                     <time
@@ -160,7 +161,7 @@ new class extends Component
                     >{{ date('Y 年 m 月 d 日', strtotime($comment['created_at'])) }}</time>
 
                     @if ($comment['created_at'] !== $comment['updated_at'])
-                        <span class="text-zinc-400">(已編輯)</span>
+                        <span class="text-zinc-400">{{ __('(Edited)') }}</span>
                     @endif
                 </div>
 
@@ -180,7 +181,7 @@ new class extends Component
                                 })"
                             >
                                 <x-icons.pencil class="w-4" />
-                                <span class="ml-2">編輯</span>
+                                <span class="ml-2">{{ __('Edit') }}</span>
                             </button>
                         @endif
 
@@ -190,10 +191,10 @@ new class extends Component
                                 data-test-id="comments.card.delete"
                                 type="button"
                                 wire:click="destroyComment({{ $comment['id'] }})"
-                                wire:confirm="你確定要刪除該留言？"
+                                wire:confirm="{{ __('Are you sure you want to delete this comment?') }}"
                             >
                                 <x-icons.trash class="w-4" />
-                                <span class="ml-2">刪除</span>
+                                <span class="ml-2">{{ __('Delete') }}</span>
                             </button>
                         @endif
                     @endauth

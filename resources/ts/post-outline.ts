@@ -14,7 +14,7 @@ function renderPostOutline(
     headings: NodeListOf<HTMLHeadingElement>,
 ): void {
     postOutline.innerHTML = `
-        <div class="flex justify-center items-center mb-4 dark:text-zinc-50" role="heading" aria-level="2">目錄</div>
+        <div class="flex justify-center items-center mb-4 dark:text-zinc-50" role="heading" aria-level="2">Table of Contents</div>
         <hr class="mb-1 h-0.5 border-0 bg-zinc-300 dark:bg-zinc-700" role="separator">
     `;
 

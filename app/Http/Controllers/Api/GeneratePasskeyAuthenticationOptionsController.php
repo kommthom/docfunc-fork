@@ -26,24 +26,24 @@ class GeneratePasskeyAuthenticationOptionsController extends Controller
                 allowCredentials: [],
             );
         } catch (InvalidDataException $e) {
-            Log::error('無法建立 Webauthn 認證選項', [
+            Log::error(__('Could not create Webauthn authentication options'), [
                 'exception' => $e->getMessage(),
             ]);
 
             return response()->json([
-                'error' => '無法建立金鑰認證選項，請稍後再試。',
+                'error' => __('Could not create key credential option, please try again later.'),
             ], 400);
         }
 
         try {
             $optionsJson = $serializer->toJson($options);
         } catch (SerializerExceptionInterface $e) {
-            Log::error('Webauthn 認證選項序列化失敗', [
+            Log::error(__('Webauthn authentication option serialization failed'), [
                 'exception' => $e->getMessage(),
             ]);
 
             return response()->json([
-                'error' => '發生錯誤，無法序列化認證選項。',
+                'error' => __('An error occurred, and the credential options could not be serialized.'),
             ], 400);
         }
 

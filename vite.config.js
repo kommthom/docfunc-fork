@@ -1,3 +1,5 @@
+import { defineConfig, lazyPlugins } from 'vite-plus';
+import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
 import laravel from 'laravel-vite-plugin';
 import { defineConfig, lazyPlugins } from 'vite-plus';

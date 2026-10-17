@@ -64,7 +64,7 @@ trait MarkdownConverter
         } catch (CommonMarkException $e) {
             Log::error($e->getMessage());
 
-            return '<p class="text-red-400">Oops！Markdown 轉換錯誤</p>';
+            return '<p class="text-red-400">Oops！Markdown Conversion error</p>';
         }
     }
 }

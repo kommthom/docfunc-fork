@@ -9,19 +9,29 @@ return new class extends Migration
     {
         $categories = [
             [
-                'name' => '日常分享',
-                'icon' => 'bi bi-chat-dots-fill',
-                'description' => '想聊啥就聊啥',
+                'name' => 'Tägliches Teilen',
+                'icon' => 'bi-chat-dots-fill',
+                'description' => 'Erzähl von deinen Themen',
             ],
             [
-                'name' => '程式技術',
-                'icon' => 'bi bi-terminal-fill',
-                'description' => '程式技術交流與分享',
+                'name' => 'Programmiertechniken',
+                'icon' => 'bi-terminal-fill',
+                'description' => 'Austausch und Teilen von Programmiertechniken',
             ],
             [
-                'name' => '電玩遊戲',
-                'icon' => 'bi bi-dpad-fill',
-                'description' => '電玩遊戲話題與心得',
+                'name' => 'Musik',
+                'icon' => 'bi bi-megaphone',
+                'description' => 'Heavy Metal und andere Musik, die ich mag',
+            ],
+            [
+                'name' => 'Draussen',
+                'icon' => 'bi bi-cloud-check-fill',
+                'description' => 'Wandern, Radfahren, Natur bewundern',
+            ],
+            [
+                'name' => 'Privat',
+                'icon' => 'bi bi-envelope-exclamation',
+                'description' => 'Privates',
             ],
         ];
 

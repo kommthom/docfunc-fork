@@ -100,8 +100,8 @@ export class Modal {
                 <button
                     type="button"
                     class="${CLOSE_MODAL_BUTTON_CLASS_NAME} text-zinc-200 transition duration-300 hover:text-zinc-50 cursor-pointer opacity-0"
-                    aria-label="關閉"
-                    title="關閉"
+                    aria-label="Close"
+                    title="Close"
                 >
                    ${X_CIRCLE_FILL_ICON_SVG}
                 </button>

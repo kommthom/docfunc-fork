@@ -17,8 +17,6 @@ new class extends Component
 
     public ?int $tagId = null;
 
-    public string $badge = '全部文章';
-
     #[Url]
     public string $order = PostOrderOptions::LATEST->value;
 
@@ -31,9 +29,16 @@ new class extends Component
 
     public function render(): View
     {
+        $userId = auth()->id();
+
         $posts = Post::query()
             ->select(['id', 'category_id', 'user_id', 'title', 'excerpt', 'slug', 'created_at'])
-            ->withCount('tags') // 計算標籤數目
+            ->withCount('tags') // Count the number of tags
+            ->when($userId, function ($query, $userId) {
+                return $query->whereRaw('IF(is_private, user_id = ?, true)', [$userId]);
+            }, function ($query) {
+                return $query->where('is_private', false);
+            })
             ->when($this->categoryId, function ($query) {
                 return $query->where('category_id', $this->categoryId);
             })
@@ -42,9 +47,8 @@ new class extends Component
                     $query->where('tag_id', $this->tagId);
                 });
             })
-            ->where('is_private', false)
             ->withOrder($this->order)
-            ->with(['user:id,name', 'category:id,icon,name', 'tags:id,name']) // 預加載防止 N+1 問題
+            ->with(['user:id,name', 'category:id,icon,name', 'tags:id,name']) // Preload prevents N+1 issues
             ->paginate(10)
             ->withQueryString();
 
@@ -112,7 +116,7 @@ new class extends Component
 
         {{-- Class badge --}}
         <div class="hidden items-center justify-center rounded-xl bg-zinc-50 px-3 py-1.5 md:flex dark:bg-zinc-800 dark:text-zinc-50">
-            {{ $badge }}
+            {{ __('All articles') }}
         </div>
     </div>
 
@@ -120,7 +124,7 @@ new class extends Component
     @forelse ($posts as $post)
         <x-card class="group relative isolate grid cursor-pointer grid-cols-1 gap-4 overflow-hidden">
             {{-- Category icon in background --}}
-            <div class="absolute -right-4 -bottom-16 z-0 size-56 rotate-12 text-zinc-200/60 transition-all duration-300 group-hover:-right-0 group-hover:-bottom-4 dark:text-zinc-700/60">
+            <div class="absolute -right-4 -bottom-16 z-0 size-56 rotate-12 text-zinc-200/60 transition-all duration-300 group-hover:right-0 group-hover:-bottom-4 dark:text-zinc-700/60">
                 {!! $post->category->icon !!}
             </div>
 
@@ -192,7 +196,7 @@ new class extends Component
 
     @empty
         <x-card class="flex h-36 w-full items-center justify-center transition duration-150 ease-in hover:-translate-x-2 dark:text-zinc-50">
-            <span>Whoops！此分類底下還沒有文章，趕緊寫一篇吧！</span>
+            <span>{{ __('Whoops! There are no articles under this category yet, hurry up and write one!') }}</span>
         </x-card>
     @endforelse
 

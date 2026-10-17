@@ -310,13 +310,21 @@ div.twitter-tweet.twitter-tweet-rendered {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle, var(--color-zinc-300) 1.4px, transparent 1.4px);
-    background-size: 10px 10px; /* 圓點間距，越小越密 */
+    background-image: radial-gradient(
+        circle,
+        var(--color-zinc-300) 1.4px,
+        transparent 1.4px
+    );
+    background-size: 10px 10px; /* The smaller the spacing between the dots, the denser they are. */
     mask-image: linear-gradient(to bottom, black, transparent 60%);
 }
 
 html[data-theme="dark"] .hero::before {
-    background-image: radial-gradient(circle, var(--color-zinc-700) 1.4px, transparent 1.4px);
+    background-image: radial-gradient(
+        circle,
+        var(--color-zinc-700) 1.4px,
+        transparent 1.4px
+    );
 }
 
 .mermaid-svg-wrapper svg,

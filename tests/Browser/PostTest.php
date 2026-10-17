@@ -17,7 +17,7 @@ test('user can see post outline', function () {
 
     $page = $this->visit($post->link_with_slug);
 
-    $page->assertSee('目錄')
+    $page->assertSee('All articles')
         ->assertSeeLink('This is post-title 1')
         ->assertSeeLink('This is post-title 2');
 });
@@ -33,7 +33,7 @@ test('user cannot see post outline, if there is no heading', function () {
 
     $page = $this->visit($post->link_with_slug);
 
-    $page->assertDontSee('目錄');
+    $page->assertDontSee('Content');
 });
 
 test('right scroll indicator appears when a code block overflows horizontally', function () {
@@ -128,10 +128,10 @@ test('ckeditor and tagify are visible on create page after the spinner clears', 
 
     $page = visit(route('posts.create'));
 
-    // "文章不公開" sits inside x-show="isReady", which only flips on
+    // "Der Artikel ist nicht öffentlich." sits inside x-show="isReady", which only flips on
     // after both ckeditor-ready and tagify-ready events fire. assertSee
     // will retry until the spinner is gone and the form is shown.
-    $page->assertSee('文章不公開');
+    $page->assertSee('Article not public');
 
     // Confirm both libraries actually mounted into the DOM.
     $hasCkeditor = $page->script('!!document.querySelector(".ck-editor")');
@@ -149,7 +149,7 @@ test('ckeditor and tagify are visible on edit page after the spinner clears', fu
 
     $page = visit(route('posts.edit', ['id' => $post->id]));
 
-    $page->assertSee('文章不公開');
+    $page->assertSee('Article not public');
 
     $hasCkeditor = $page->script('!!document.querySelector(".ck-editor")');
     $hasTagify = $page->script('!!document.querySelector("tags.tagify")');
@@ -294,9 +294,9 @@ test('it opens and closes code block zoom modal', function () {
 
     $page->assertNoJavascriptErrors()
         ->assertSee($post->title)
-        ->assertPresent('button[aria-label="放大檢視程式碼"]');
+        ->assertPresent('button[aria-label="Zoom in to view code"]');
 
-    $page->click('button[aria-label="放大檢視程式碼"]');
+    $page->click('button[aria-label="Zoom in to view code"]');
 
     $page->assertPresent('#zoom-in-pre-modal[open]')
         ->assertPresent('#zoom-in-pre pre');
@@ -325,9 +325,9 @@ test('it opens and closes image zoom modal', function () {
 
     $page->assertNoJavascriptErrors()
         ->assertSee($post->title)
-        ->assertPresent('button[aria-label="放大檢視圖片"]');
+        ->assertPresent('button[aria-label="Zoom in to view the image"]');
 
-    $page->click('button[aria-label="放大檢視圖片"]');
+    $page->click('button[aria-label="Zoom in to view the image"]');
 
     $page->assertPresent('#zoom-in-image-modal[open]')
         ->assertPresent('#zoom-in-image');

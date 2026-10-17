@@ -41,8 +41,12 @@ class AppServiceProvider extends ServiceProvider
             $head
                 ->title(config('app.name'))
                 ->description(config('app.name'))
-                ->og(type: OgType::Website, image: 'https://blobs.docfunc.com/share.webp', siteName: config('app.name'))
+                ->og(type: OgType::Website, image: 'https://blob.t-benninghaus.de/share.webp', siteName: config('app.name'))
                 ->twitter(card: TwitterCard::SummaryWithLargeImage);
         });
+
+        // if($this->app->environment('production')) {
+        //	URL::forceScheme('https');
+        // };
     }
 }

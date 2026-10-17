@@ -232,7 +232,7 @@ describe('home page', function () {
 
         get($post->link_with_slug)
             ->assertStatus(200)
-            ->assertSee('https://blobs.docfunc.com/share.webp');
+            ->assertSee('https://blob.t-benninghaus.de/share.webp');
     });
 
     test('not showing the cover image on top of the post', function () {
@@ -289,7 +289,7 @@ describe('home page', function () {
 
         get($post->link_with_slug)
             ->assertOk()
-            ->assertSee('更新於 '.$post->updated_at->toDateString());
+            ->assertSee('Updated on '.$post->updated_at->toDateString());
     });
 
     it('does not show revised date when post is not substantially updated', function () {
@@ -300,6 +300,6 @@ describe('home page', function () {
 
         get($post->link_with_slug)
             ->assertOk()
-            ->assertDontSee('更新於');
+            ->assertDontSee('Updated on');
     });
 });

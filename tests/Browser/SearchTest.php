@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Models\Post;
 
 test('user can search posts by title', function () {
@@ -34,9 +33,9 @@ test('user can see no result message if there are no results for the search quer
 
     $page->click('#search-button')
         ->type('#search-box', 'nonexistentkeyword')
-        ->assertSeeIn('#search-result', '抱歉... 找不到 "')
+        ->assertSeeIn('#search-result', 'Sorry...no related articles found. "')
         ->assertSeeIn('#search-result', 'nonexistentkeyword')
-        ->assertSeeIn('#search-result', '" 的相關文章');
+        ->assertSeeIn('#search-result', '" Related Articles');
 });
 
 test('user cannot search private posts', function () {
@@ -50,8 +49,7 @@ test('user cannot search private posts', function () {
 
     $page->click('#search-button')
         ->type('#search-box', 'secret')
-        ->assertSeeIn('#search-result', '抱歉... 找不到 "')
+        ->assertSeeIn('#search-result', 'Sorry...no related articles found. "')
         ->assertSeeIn('#search-result', 'secret')
-        ->assertSeeIn('#search-result', '" 的相關文章');
+        ->assertSeeIn('#search-result', '" Related Articles');
 });
-

@@ -47,20 +47,20 @@ class PostForm extends Form
                 'user_id'     => ['required', 'numeric'],
                 'title'       => ['required', 'min:4', 'max:50'],
                 'category_id' => ['required', 'numeric', 'exists:categories,id'],
-                'body'        => ['required', 'min:500', 'max:'.self::BODY_MAX_CHARACTER],
+                'body'        => ['required', 'min:5', 'max:'.self::BODY_MAX_CHARACTER],
             ],
             [
-                'user_id.required'     => '請登入後再發布文章',
-                'user_id.numeric'      => '使用者資料錯誤',
-                'title.required'       => '請填寫標題',
-                'title.min'            => '標題至少 4 個字元',
-                'title.max'            => '標題至多 50 個字元',
-                'category_id.required' => '請選擇文章分類',
-                'category_id.numeric'  => '分類資料錯誤',
-                'category_id.exists'   => '分類不存在',
-                'body.required'        => '請填寫文章內容',
-                'body.min'             => '文章內容至少 500 個字元',
-                'body.max'             => '文章內容字數已超過 '.self::BODY_MAX_CHARACTER.' 個字元',
+                'user_id.required'     => __('Please log in before posting an article.'),
+                'user_id.numeric'      => __('User data error'),
+                'title.required'       => __('Please fill in the title'),
+                'title.min'            => __('Title must be at least 4 characters'),
+                'title.max'            => __('Title up to 50 characters'),
+                'category_id.required' => __('Please select article category'),
+                'category_id.numeric'  => __('Category data error'),
+                'category_id.exists'   => __('Category does not exist'),
+                'body.required'        => __('Please fill in the article content'),
+                'body.min'             => __('Article content must be at least 5 characters'),
+                'body.max'             => __('Article content exceeds '.self::BODY_MAX_CHARACTER.' characters'),
             ]
         )->validate();
     }
@@ -91,12 +91,12 @@ class PostForm extends Form
 
         $autoSavePostData = json_decode($cached, true);
 
-        $this->category_id = $autoSavePostData['category_id'];
-        $this->is_private = $autoSavePostData['is_private'];
-        $this->cover_image_url = $autoSavePostData['cover_image_url'];
-        $this->title = $autoSavePostData['title'];
-        $this->tags = $autoSavePostData['tags'];
-        $this->body = $autoSavePostData['body'];
+            $this->category_id = $autoSavePostData['category_id'];
+            $this->is_private = $autoSavePostData['is_private'];
+            $this->cover_image_url = $autoSavePostData['cover_image_url'];
+            $this->title = $autoSavePostData['title'];
+            $this->tags = $autoSavePostData['tags'];
+            $this->body = $autoSavePostData['body'];
 
         return true;
     }

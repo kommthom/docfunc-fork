@@ -22,13 +22,13 @@ use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
 /**
- * @property string $link_with_slug 帶有 slug 的文章連結，set by linkWithSlug()
- * @property string $tags_json json 格式的標籤列表, set by tagsJson()
+ * @property string $link_with_slug Article-Link with Slug, set by linkWithSlug()
+ * @property string $tags_json JSON-formatted list of Tags, set by tagsJson()
  * @property User $user
  * @property Collection<int, Tag> $tags
  *
- * @method int increment(string $column, float|int $amount = 1, array<string, mixed> $extra = []) 將該欄位值加 1
- * @method int decrement(string $column, float|int $amount = 1, array<string, mixed> $extra = []) 將該欄位值減 1
+ * @method int increment(string $column, float|int $amount = 1, array<string, mixed> $extra = []) Increment column value by 1.
+ * @method int decrement(string $column, float|int $amount = 1, array<string, mixed> $extra = []) Decrement column value by 1.
  */
 class Post extends Model implements Feedable
 {
@@ -136,7 +136,7 @@ class Post extends Model implements Feedable
      */
     protected function tagsJson(): Attribute
     {
-        // 生成包含 tag ID 與 tag name 的 json 字串
+        // Generates a JSON-String containing Tag-ID and Tag-Name
         // [{"id":"2","value":"C#"},{"id":"5","value":"Dart"}]
         return new Attribute(
             get: fn ($value) => $this->tags

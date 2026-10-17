@@ -210,7 +210,7 @@ window.createClassicEditor = async function(
         licenseKey: 'GPL',
         root: {
             initialData: initialData,
-            placeholder: '分享使自己成長～',
+            placeholder: 'Sharing helps you grow.',
             label: 'Main content'
         },
         // Editor configuration.

@@ -8,7 +8,7 @@ use function Pest\Laravel\get;
 test('login screen can be rendered', function () {
     get('/login')
         ->assertSuccessful()
-        ->assertSee('<title>登入</title>', false);
+        ->assertSee('<title>Log In</title>', false);
 });
 
 test('users can authenticate using the login screen', function () {
@@ -24,7 +24,7 @@ test('users can authenticate using the login screen', function () {
         ->set('email', $user->email)
         ->set('password', $password)
         ->call('login')
-        ->assertDispatched('toast', status: 'success', message: '登入成功！')
+        ->assertDispatched('toast', status: 'success', message: 'Login successful!')
         ->assertRedirect('/');
 
     $this->assertAuthenticated();
@@ -92,7 +92,7 @@ test('users cannot log in if they have a passkey', function () {
         ->set('email', $user->email)
         ->set('password', 'correctPassword101')
         ->call('login')
-        ->assertSeeText('您的帳號已註冊密碼金鑰，請使用密碼金鑰進行登入');
+        ->assertSeeText('Your account has registered a passkey, please use the passkey to log in.');
 
     $this->assertGuest();
 });
@@ -121,9 +121,10 @@ test('users can authenticate using passkey', function () {
         ],
     ]);
 
+    // 'rpId'             => Uri::of(config('app.url'))->host(),
     Session::flash('passkey-authentication-options', json_encode([
         'challenge'        => 'OWZrbjlQR3FmMklJS3ZkYg',
-        'rpId'             => Uri::of(config('app.url'))->host(),
+        'rpId'             => Uri::of('https://docfunc.test')->host(),
         'allowCredentials' => [],
     ]));
 
@@ -143,7 +144,7 @@ test('users can authenticate using passkey', function () {
         ]),
     ])
         ->call('loginWithPasskey')
-        ->assertDispatched('toast', status: 'success', message: '登入成功！');
+        ->assertDispatched('toast', status: 'success', message: 'Login successful!');
 });
 
 
@@ -178,7 +179,7 @@ test('users cannot login if they have passkey', function () {
         ->set('email', $user->email)
         ->set('password', $password)
         ->call('login')
-        ->assertSeeText('您的帳號已註冊密碼金鑰，請使用密碼金鑰進行登入');
+        ->assertSeeText('Your account has registered a passkey, please use the passkey to log in.');
 
     $this->assertGuest();
 });

@@ -5,7 +5,7 @@
     <div class="flex min-h-screen flex-col">
         <livewire:layouts.header />
 
-        <main wire:transition.navigate class="flex grow flex-col">
+        {<main wire:transition.navigate class="flex grow flex-col">
             {{ $slot }}
         </main>
     </div>
